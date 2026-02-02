@@ -1,6 +1,6 @@
 ---
 title: "In Class Lab - DIY Functions"
-author: "Dr. Shoemaker"
+author: "Harvey Gonzalez"
 date: "DATA 2401"
 output: html_document
 ---
@@ -16,40 +16,86 @@ The questions from your notes today are below, please copy your answers them her
 1. Write your own function that takes the temperature in Fahrenheit as an argument and returns the Celcius equivalent. 
 
 ```{R}
-
-
+fahrenheit_to_celsius <- function(temp_f) {
+  temp_c <- (temp_f - 32) * 5/9
+  return(temp_c)
+}
+fahrenheit_to_celsius(32) 
+fahrenheit_to_celsius(212)  
+fahrenheit_to_celsius(98.6) 
+```
 ```
 
 2. Expand that function so that it takes a temperature in Fahrenheit and a distance in feet and returns **both** the temperature in Celcius and the distance in meters (you'll likely need to remember the `c()` function!)
 
-
 ```{r}
 
+convert_temp_and_distance <- function(temp_f, dist_feet) {
+  temp_c <- (temp_f - 32) * 5/9
+  dist_m <- dist_feet * 0.3048
+  return(c(temp_c, dist_m))
+}
 
+convert_temp_and_distance(59, 100)
 ```
 
 
 3. Write a function that prints out a statement of whether the number passed as an argument is positive, negative or 0. 
 
-```{R}
-
-
+```{r}
+check_sign <- function(num) {
+  if (num > 0) {
+    print("The number is positive")
+  } else if (num < 0) {
+    print("The number is negative")
+  } else {
+    print("The number is zero")
+  }
+}
+check_sign(5)
+check_sign(-3)
+check_sign(0)
 ```
+
 
 4. Write a function that returns the absolute value of the number passed as an argument.
    + Don't use `abs()`. Use the flow from problem 1 and multiply by negative one as necessary. 
    
 ```{r}
-
-
+my_abs <- function(num) {
+  if (num < 0) {
+    return(num * -1)
+  } else {
+    return(num)
+  }
+}
+my_abs(5)   
+my_abs(5)    
+my_abs(0)
 ```
 
 5. Hard mode: add an error check to that function that prints out the string "Please pass a numerical value to this function" if the user passes the function a string. 
    + There are functions that check and return T/F: `is.numeric()` or `is.character()` would be relevant here
    
 ```{r}
+safe_abs <- function(x) {
 
+  if (!is.numeric(x)) {
+    print("Please pass a numerical value to this function")
+  } else {
+  
+    if (x < 0) {
+      return(x * -1)
+    } else {
+      return(x)
+    }
+  }
+}
 
+safe_abs(-100)
+
+my_abs(-50)
+my_abs(25)
 
 ```
    
@@ -60,5 +106,4 @@ The questions from your notes today are below, please copy your answers them her
 
 
 
-```
 
